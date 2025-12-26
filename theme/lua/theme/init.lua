@@ -6,16 +6,19 @@ function M.setup()
     black = '#000000',
     white = '#ededed',
     orange = '#ffaa00',
-    green = '#00c427',
+    green = '#02ed31',
     red = '#e60000',
     blue = '#00a6ff',
   }
 
   local highlights = {
 
-    Normal = { fg = colors.black, bg = colors.white },
+    Normal = { fg = colors.black, bg = 'none' },
+    NormalFloat = { bg = 'none' },
+
     CursorLine = { bg = '#e6e6e6' },
-    LineNr = { fg = colors.purple },
+    CursorLineNr = { fg = colors.purple },
+    LineNr = { fg = colors.black },
 
     -- Neovim text configurations --
     Function = { fg = colors.purple },
