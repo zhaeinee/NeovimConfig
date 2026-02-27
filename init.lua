@@ -164,6 +164,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
+vim.opt.guicursor = 'n-v-i-c:block'
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -299,6 +301,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
     },
   },
+  'pocco81/auto-save.nvim',
   --[[{
     'nvim-tree/nvim-tree.lua',
     version = '*',
@@ -844,7 +847,6 @@ require('lazy').setup({
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    event = 'VimEnter',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -900,7 +902,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'super-tab',
+        preset = 'enter',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -1080,6 +1082,8 @@ require('lazy').setup({
   },
 })
 
+vim.cmd.highlight 'clear'
+
 vim.api.nvim_create_autocmd({ 'WinEnter', 'BufWinEnter' }, {
   pattern = { 'NvimTree*' },
   callback = function()
@@ -1145,6 +1149,8 @@ vim.api.nvim_create_autocmd('Colorscheme', {
     require('theme').setup()
   end,
 })
+
+vim.cmd.colorscheme 'theme'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

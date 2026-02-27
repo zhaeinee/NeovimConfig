@@ -12,7 +12,6 @@ function M.setup()
   }
 
   local highlights = {
-
     Normal = { fg = colors.black, bg = 'none' },
     NormalFloat = { bg = 'none' },
 
@@ -27,6 +26,8 @@ function M.setup()
     String = { fg = colors.purple },
     QuickFixLine = { fg = colors.purple },
     Question = { fg = colors.purple },
+    Visual = { bg = '#e3e3e3' },
+    LspReferencetext = { bg = '#e3e3e3' },
 
     -- Other configuratiosn --
     Special = { fg = colors.purple },
