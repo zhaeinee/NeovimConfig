@@ -450,6 +450,10 @@ require('lazy').setup({
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
+    {
+      'lopi-py/luau-lsp.nvim',
+      opts = {},
+    },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
@@ -790,6 +794,9 @@ require('lazy').setup({
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
+        automatic_enable = {
+          exclude = {"luau_lsp"}
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -1112,35 +1119,28 @@ vim.lsp.config('luau-lsp', {
   },
 })
 
-require('mason-lspconfig').setup {
-  automatic_enable = {
-    exclude = { 'luau_lsp' },
+require('luau-lsp').setup {
+  plugin = {
+    port = 3667,
   },
   platform = {
-    type = 'roblox',
+    platform = 'roblox',
   },
   types = {
     roblox_security_level = 'PluginSecurity',
+  },
+  fflags = {
+    enable_new_solver = true, -- enables the fflags required for luau's new type solver
+    sync = false, -- sync currently enabled fflags with roblox's published fflags
+    override = { -- override fflags passed to luau
+      LuauTableTypeMaximumStringifierLength = '100',
+    },
   },
   sourcemap = {
     enabled = true,
     autogenerate = true, -- automatic generation when the server is initialized
     rojo_project_file = 'default.project.json',
     sourcemap_file = 'sourcemap.json',
-  },
-}
-
-require('luau-lsp').setup {
-  plugin = {
-    enabled = true,
-    port = 3667,
-  },
-  fflags = {
-    enable_new_solver = true, -- enables the fflags required for luau's new type solver
-    sync = true, -- sync currently enabled fflags with roblox's published fflags
-    override = { -- override fflags passed to luau
-      LuauTableTypeMaximumStringifierLength = '100',
-    },
   },
 }
 

@@ -5,10 +5,10 @@ function M.setup()
     purple = '#7f8cff',
     black = '#000000',
     white = '#ededed',
-    orange = '#ffaa00',
+    orange = '#f2a00f',
     green = '#02ed31',
     red = '#e60000',
-    blue = '#00a6ff',
+    blue = '#009ff5',
   }
 
   local highlights = {
